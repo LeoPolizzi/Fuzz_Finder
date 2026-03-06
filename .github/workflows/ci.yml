@@ -24,7 +24,7 @@ jobs:
           make -j
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: fuzzer-bin
           path: bin/fuzzer
@@ -38,7 +38,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download built artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: fuzzer-bin
           path: dist
@@ -46,6 +46,6 @@ jobs:
       - name: Create GitHub Release and upload artifact
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/bin/fuzzer
+          files: dist/fuzzer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
