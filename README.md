@@ -65,7 +65,7 @@ Notes
 -----
 - The fuzzer starts with exponential probing to find a length that causes a crash, then performs a binary search to find the minimal crashing length.
 - The program prints progress bars and reports the minimal crashing length when found.
-- Extra command-line flags can be passed after these two positional arguments; they will be ignored by the basic argument parser but can be extended in the future.
+- Extra command-line flags will be ignored by the basic argument parser but can be extended in the future.
 
 Interpreting results
 --------------------
