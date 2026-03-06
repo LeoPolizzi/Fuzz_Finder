@@ -59,7 +59,7 @@ ExecResult Executor::run_with_input(const std::string& program_path, const std::
         _exit(127);
     }
     close(stdin_pipe[0]);
-    write(stdin_pipe[1], stdin_data.data( ), stdin_data.size( ));
+    (void)write(stdin_pipe[1], stdin_data.data( ), stdin_data.size( ));
     close(stdin_pipe[1]);
     ExecResult result;
     int status = 0;
