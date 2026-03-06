@@ -59,7 +59,12 @@ ExecResult Executor::run_with_input(const std::string& program_path, const std::
         _exit(127);
     }
     close(stdin_pipe[0]);
-    (void)write(stdin_pipe[1], stdin_data.data( ), stdin_data.size( ));
+    ssize_t bytes_written = write(stdin_pipe[1], stdin_data.data( ), stdin_data.size( ));
+    if (bytes_written < 0) {
+        perror("write to stdin pipe");
+    } else if ((size_t)bytes_written < stdin_data.size( )) {
+        std::cerr << "Warning: Partial write to stdin pipe." << std::endl;
+    }
     close(stdin_pipe[1]);
     ExecResult result;
     int status = 0;
